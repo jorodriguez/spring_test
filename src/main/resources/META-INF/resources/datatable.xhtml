@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      >
+	
+	<h:head>
+	</h:head>
+	<h:body>		
+		Estas en JSF - Primefaces + Spring
+		<h:form>
+			<p:inputText placeholder="Nombre" value="#{usuarioBean.usuario.nombre}">
+			</p:inputText>
+			<p:inputNumber placeholder="Edad" value="#{usuarioBean.usuario.edad}">
+			</p:inputNumber>
+			<p:commandButton value="Guardar" actionListener="#{usuarioBean.guardarUsuario(e)}"
+			update="dtUsuario" 
+			> </p:commandButton>
+			<br/>
+			<p:dataTable id="dtUsuario" var="usuario" value="#{usuarioBean.lista}">
+				<p:column headerText="Id ">
+						<h:outputLabel value="#{usuario.id}"> </h:outputLabel>
+				</p:column> 
+				<p:column headerText="Nombre ">
+						<h:outputLabel value="#{usuario.nombre}"> 
+						</h:outputLabel>
+				</p:column>
+				<p:column headerText="Edad">
+						<h:outputLabel value="#{usuario.edad}">							
+							  
+						</h:outputLabel>
+				</p:column>
+				<p:column>
+						<p:commandButton value="Eliminar" actionListener="#{usuarioBean.eliminar(e)}"
+						update="@form" 
+						>
+							<f:param name="id_usuario" value="#{usuario.id}"></f:param>
+						 </p:commandButton>
+				</p:column>
+			</p:dataTable>					
+		</h:form>
+	</h:body>	
+</html>
